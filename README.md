@@ -1,13 +1,14 @@
 # Room Sample
-ToDo List Application created as a sample for Room persistence library included this functions:
 
-1. add a row to the database
-2. remove a row from database 
-3. retrieve rows from the database 
-4. save multiple rows to the database
-5. clear all rows from the database 
+ToDo List Application created as a sample for the Room persistence library. It includes these functions:
 
-read more about Room in the [Android documentation](https://developer.android.com/topic/libraries/architecture/room)
+1. Add a row to the database.
+2. Remove a row from the database.
+3. Retrieve rows from the database.
+4. Save multiple rows to the database.
+5. Clear all rows from the database.
+
+Read more about Room in the [Android documentation](https://developer.android.com/topic/libraries/architecture/room).
 
 ---
 
@@ -36,4 +37,3 @@ Los datos se guardan en Room. Las tareas creadas con la versión anterior se con
 ### Documentación
 
 La memoria de la práctica está en [`docs/Practica10_Ape1_Ape2_Rapado_Sanchez.docx`](docs/Practica10_Ape1_Ape2_Rapado_Sanchez.docx).
-
