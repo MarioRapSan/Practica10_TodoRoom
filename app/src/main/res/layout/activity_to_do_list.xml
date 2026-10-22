@@ -10,6 +10,8 @@
         android:id="@+id/rv_todo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,5 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="24dp"
-        android:src="@drawable/ic_add" />
+        android:backgroundTint="@color/colorFab"
+        android:src="@drawable/ic_add"
+        app:tint="@color/textPrimary" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
