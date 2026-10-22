@@ -1,6 +1,7 @@
 package example.khraisat.com.roomexample;
 
 import android.content.Context;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,15 +53,34 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHo
         holder.toDoTextView.setText(toDo.getToDo());
         holder.toDoKeyTextView.setText(String.format("ToDo #%d", toDo.getToDoId()));
 
-
+        int labelResource;
+        int colorResource;
+        switch (toDo.getPriority()) {
+            case ToDoModel.PRIORITY_HIGH:
+                labelResource = R.string.priority_high;
+                colorResource = R.color.priorityHigh;
+                break;
+            case ToDoModel.PRIORITY_LOW:
+                labelResource = R.string.priority_low;
+                colorResource = R.color.priorityLow;
+                break;
+            default:
+                labelResource = R.string.priority_medium;
+                colorResource = R.color.priorityMedium;
+                break;
+        }
+        holder.priorityTextView.setText(labelResource);
+        holder.priorityTextView.setTextColor(ContextCompat.getColor(context, colorResource));
     }
 
     public void setToDoList(ArrayList<ToDoModel> toDoList) {
-        this.toDoList = toDoList;
-    }
-
-    public void changeItems(ArrayList<ToDoModel> toDoModel) {
-        this.toDoList.addAll(toDoModel);
+        if (this.toDoList == toDoList) {
+            return;
+        }
+        this.toDoList.clear();
+        if (toDoList != null) {
+            this.toDoList.addAll(toDoList);
+        }
         notifyDataSetChanged();
     }
 
@@ -80,19 +100,20 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ViewHo
     protected class ViewHolder extends RecyclerView.ViewHolder {
         private TextView toDoTextView;
         private TextView toDoKeyTextView;
+        private TextView priorityTextView;
         private Button deleteButton;
 
         public ViewHolder(View view) {
             super(view);
             toDoTextView = view.findViewById(R.id.tv_to_do);
             toDoKeyTextView = view.findViewById(R.id.tv_to_do_key);
+            priorityTextView = view.findViewById(R.id.tv_priority);
             deleteButton = view.findViewById(R.id.btn_delete);
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    deleteButtonClickListener.onDeleteClick(toDoList.get(getAdapterPosition()));
-                    toDoList.remove(toDoList.get(getAdapterPosition()));
-                    notifyDataSetChanged();
+                    deleteButtonClickListener.onDeleteClick(
+                            toDoList.get(getAdapterPosition()));
                 }
             });
         }

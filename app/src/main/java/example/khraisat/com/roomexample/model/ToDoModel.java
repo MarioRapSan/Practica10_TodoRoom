@@ -1,5 +1,6 @@
 package example.khraisat.com.roomexample.model;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -14,14 +15,24 @@ import androidx.room.PrimaryKey;
 @Entity
 public class ToDoModel {
 
+    public static final int PRIORITY_LOW = 0;
+    public static final int PRIORITY_MEDIUM = 1;
+    public static final int PRIORITY_HIGH = 2;
+
     @PrimaryKey(autoGenerate = true)
     private int toDoId;
 
     private String toDo;
 
+    @ColumnInfo(defaultValue = "1")
+    private int priority = PRIORITY_MEDIUM;
 
-    public ToDoModel(String toDo) {
+    public ToDoModel() {
+    }
+
+    public ToDoModel(String toDo, int priority) {
         this.toDo = toDo;
+        this.priority = priority;
     }
 
     public int getToDoId() {
@@ -38,5 +49,13 @@ public class ToDoModel {
 
     public void setToDo(String toDo) {
         this.toDo = toDo;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }

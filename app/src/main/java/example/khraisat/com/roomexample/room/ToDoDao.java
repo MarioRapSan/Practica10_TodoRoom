@@ -22,7 +22,7 @@ import example.khraisat.com.roomexample.model.ToDoModel;
 public interface ToDoDao {
 
 
-    @Query("SELECT * FROM ToDoModel")
+    @Query("SELECT * FROM ToDoModel ORDER BY priority DESC, toDoId ASC")
     List<ToDoModel> getAll();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

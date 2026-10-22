@@ -5,4 +5,26 @@
     <string name="cancel">Cancel</string>
     <string name="save">save</string>
     <string name="delete">Delete</string>
+
+    <!-- Pantalla Acerca de -->
+    <string name="about_title">Acerca de</string>
+    <string name="about_practice">Práctica 10 · PMDM</string>
+    <string name="about_version">Versión 1.0</string>
+    <string name="about_original">Aplicación original</string>
+    <string name="about_author_original">Ayat Khraisat</string>
+    <string name="about_modified">Versión modificada por</string>
+    <string name="about_author">Mario Rapado Sánchez</string>
+    <string name="about_changes">Cambios en esta versión</string>
+    <string name="about_change_1">• Pantalla de información de la aplicación.</string>
+    <string name="about_change_2">• Nueva paleta de colores.</string>
+    <string name="about_change_3">• Prioridades en las tareas: alta, media y baja.</string>
+    <string name="about_repo">Ver repositorio original</string>
+    <string name="about_close">Volver</string>
+    <string name="about_icon">Icono de la aplicación</string>
+
+    <!-- Prioridades -->
+    <string name="priority">Prioridad</string>
+    <string name="priority_low">Baja</string>
+    <string name="priority_medium">Media</string>
+    <string name="priority_high">Alta</string>
 </resources>

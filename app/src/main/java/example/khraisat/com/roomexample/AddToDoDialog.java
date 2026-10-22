@@ -8,8 +8,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+
+import example.khraisat.com.roomexample.model.ToDoModel;
 
 /**
  * Created by Ayat khraisat  on 6/10/2018.
@@ -23,6 +25,7 @@ public class AddToDoDialog extends DialogFragment {
 
 
     private EditText toDoEditText;
+    private RadioGroup priorityRadioGroup;
     private AddToDoInterface addToDoInterface;
 
 
@@ -33,12 +36,15 @@ public class AddToDoDialog extends DialogFragment {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         View root = inflater.inflate(R.layout.dialog_add_todo, null);
         toDoEditText = root.findViewById(R.id.et_todo);
+        priorityRadioGroup = root.findViewById(R.id.rg_priority);
+
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         dialogBuilder.setPositiveButton(getContext()
                 .getString(R.string.save), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                addToDoInterface.onSaveClick(toDoEditText.getText().toString());
+                addToDoInterface.onSaveClick(
+                        toDoEditText.getText().toString(), getSelectedPriority());
             }
         });
         dialogBuilder.setNegativeButton(getContext()
@@ -51,6 +57,17 @@ public class AddToDoDialog extends DialogFragment {
 
         dialogBuilder.setView(root);
         return dialogBuilder.create();
+    }
+
+    private int getSelectedPriority() {
+        int selected = priorityRadioGroup.getCheckedRadioButtonId();
+        if (selected == R.id.rb_high) {
+            return ToDoModel.PRIORITY_HIGH;
+        }
+        if (selected == R.id.rb_low) {
+            return ToDoModel.PRIORITY_LOW;
+        }
+        return ToDoModel.PRIORITY_MEDIUM;
     }
 
 

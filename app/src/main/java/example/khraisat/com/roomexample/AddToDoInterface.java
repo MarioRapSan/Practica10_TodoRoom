@@ -10,6 +10,6 @@ package example.khraisat.com.roomexample;
  */
 public interface AddToDoInterface {
 
-    void onSaveClick(String toDo);
+    void onSaveClick(String toDo, int priority);
 
 }

@@ -31,14 +31,22 @@ public class DataBaseManager {
     }
 
     public void saveItemToDataBase(ToDoModel entry) {
-        SaveItemToDatabase saveItemToDatabase = new SaveItemToDatabase( entry);
-        saveItemToDatabase.execute();
+        SaveItemToDatabase saveItemToDatabase = new SaveItemToDatabase(entry);
+        try {
+            saveItemToDatabase.execute().get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
 
     public void remove(ToDoModel toDoModel) {
         RemoveItemFromDataBase removeItemFromDataBase = new RemoveItemFromDataBase(toDoModel);
-        removeItemFromDataBase.execute();
+        try {
+            removeItemFromDataBase.execute().get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
 

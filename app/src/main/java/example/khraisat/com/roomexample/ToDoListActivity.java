@@ -1,12 +1,16 @@
 package example.khraisat.com.roomexample;
 
+import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
-import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -19,9 +23,7 @@ public class ToDoListActivity extends AppCompatActivity implements AddToDoInterf
     private ToDoListAdapter toDoListAdapter;
     private RecyclerView toDoRecyclerView;
     private DataBaseManager dataBaseManager;
-    private TextView emptyListTextView;
     private FloatingActionButton addFloatingActionButton;
-    private ArrayList<ToDoModel> toDoModelArrayList;
 
     @Override
 
@@ -30,10 +32,8 @@ public class ToDoListActivity extends AppCompatActivity implements AddToDoInterf
         dataBaseManager = new DataBaseManager(this);
         setContentView(R.layout.activity_to_do_list);
         toDoRecyclerView = findViewById(R.id.rv_todo);
-        emptyListTextView = findViewById(R.id.tv_empty_list);
         addFloatingActionButton = findViewById(R.id.fab_add_todo);
         toDoListAdapter = new ToDoListAdapter(this, this);
-        toDoModelArrayList = new ArrayList<>();
 
         addFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,27 +46,40 @@ public class ToDoListActivity extends AppCompatActivity implements AddToDoInterf
         });
         toDoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         toDoRecyclerView.setAdapter(toDoListAdapter);
+        loadToDos();
+    }
+
+    private void loadToDos() {
         ArrayList<ToDoModel> toDoModelArrayList = dataBaseManager.getData();
-
-        if (toDoModelArrayList != null && toDoModelArrayList.size() > 0) {
-            this.toDoModelArrayList.addAll(toDoModelArrayList);
-            toDoListAdapter.setToDoList(toDoModelArrayList);
-        }
-
-
+        toDoListAdapter.setToDoList(toDoModelArrayList);
     }
 
     @Override
-    public void onSaveClick(String toDo) {
-        ToDoModel toDoModel = new ToDoModel(toDo);
+    public void onSaveClick(String toDo, int priority) {
+        ToDoModel toDoModel = new ToDoModel(toDo, priority);
         dataBaseManager.saveItemToDataBase(toDoModel);
-        //toDoModelArrayList.add(toDoModel);
-        toDoListAdapter.changeItems(dataBaseManager.getData());
+        loadToDos();
     }
 
 
     @Override
     public void onDeleteClick(ToDoModel toDoModel) {
         dataBaseManager.remove(toDoModel);
+        loadToDos();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_about) {
+            startActivity(new Intent(this, AboutActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

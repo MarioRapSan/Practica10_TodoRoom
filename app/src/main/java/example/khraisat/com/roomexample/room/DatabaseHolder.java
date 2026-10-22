@@ -29,7 +29,7 @@ public class DatabaseHolder {
                     context.getApplicationContext(),
                     AppDatabase.class,
                     DATABASE_NAME
-            ).build();
+            ).addMigrations(AppDatabase.MIGRATION_1_2).build();
         }
         return DATABASE_INSTANCE;
     }
