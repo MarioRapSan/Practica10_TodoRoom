@@ -36,4 +36,4 @@ Los datos se guardan en Room. Las tareas creadas con la versión anterior se con
 
 ### Documentación
 
-La memoria de la práctica está en [`docs/Practica10_Rapado_Sanchez_Mario.pdf`](docs/Practica10_Ape1_Ape2_Rapado_Sanchez.docx).
+La memoria de la práctica está disponible en [PDF](docs/Practica10_Rapado_Sanchez_Mario.pdf) y en [DOCX editable](docs/Practica10_Ape1_Ape2_Rapado_Sanchez.docx). Incluye la estructura del proyecto, el árbol de archivos, las clases principales, los componentes Android, el almacenamiento con Room y el flujo de ejecución.
