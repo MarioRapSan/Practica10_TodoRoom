@@ -36,4 +36,4 @@ Los datos se guardan en Room. Las tareas creadas con la versión anterior se con
 
 ### Documentación
 
-La memoria de la práctica está en [`docs/Practica10_Ape1_Ape2_Rapado_Sanchez.docx`](docs/Practica10_Ape1_Ape2_Rapado_Sanchez.docx).
+La memoria de la práctica está en [`docs/Practica10_Rapado_Sanchez_Mario.pdf`](docs/Practica10_Ape1_Ape2_Rapado_Sanchez.docx).
